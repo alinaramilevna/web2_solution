@@ -1,10 +1,12 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request, redirect, url_for
+from loginform import LoginForm
 
 app = Flask(__name__)
+app.config['SECRET_KEY'] = 'yandexlyceum_secret_key'
 
 
 @app.route('/')
-def index():
+def base():
     return render_template('base.html')
 
 
@@ -20,6 +22,41 @@ def crew_list(type):
           'гляциолог, инженер жизнеобеспечения, метеоролог, оператор марсохода, киберинженер, ' \
           'штурман, пилот дронов'.split(', ')
     return render_template('crew_list.html', list=arr, type=type)
+
+
+@app.route('/form', methods=['POST', 'GET'])
+def index():
+    if request.method == 'GET':
+        return render_template('form.html')
+    elif request.method == 'POST':
+        return redirect(url_for('answer'))
+
+
+@app.route('/answer')
+def answer():
+    results = {
+        'surname': 'Alina',
+        'name': 'Alinova',
+        'email': 'aaaa@gmail.com',
+        'class': 'obychnoe',
+        'sex': 'nonetype',
+        'about': 'hihihahha',
+        'accept': 'true'
+    }
+    return render_template('auto_answer.html', **results)
+
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    form = LoginForm()
+    if form.validate_on_submit():
+        return redirect('/success')
+    return render_template('login_form.html', title='Авторизация', form=form)
+
+
+@app.route('/table/<sex>/<int:age>')
+def table(sex, age):
+    return render_template('table.html', sex=sex, age=age)
 
 
 if __name__ == '__main__':

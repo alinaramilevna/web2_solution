@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+Фамилия: {{lastname}} <br>
+Имя: {{name}} <br>
+Образование: {{class}} <br>
+Профессия: {{profession}} <br>
+Пол: {{sex}} <br>
+Мотивация: {{about}} <br>
+Готовы остаться на марсе?:
+{% if accept == 'on' %} Да <br>
+{% else %} Нет <br> {% endif %}
+
+{% endblock %}

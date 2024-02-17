@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Аварийный доступ</h1>
+<form action="" method="post" novalidate>
+    {{ form.hidden_tag() }}
+    <p>
+        {{ form.username.label }}<br>
+        {{ form.username(class="form-control") }}<br>
+        {% for error in form.username.errors %}
+    <div class="alert alert-danger" role="alert">
+        {{ error }}
+    </div>
+    {% endfor %}
+    </p>
+    <p>
+        {{ form.userpassword.label }}<br>
+        {{ form.userpassword(class="form-control", type="password") }}<br>
+        {% for error in form.userpassword.errors %}
+    <div class="alert alert-danger" role="alert">
+        {{ error }}
+    </div>
+    {% endfor %}
+    </p>
+    <p>
+        {{ form.captainname.label }}<br>
+        {{ form.captainname(class="form-control") }}<br>
+        {% for error in form.captainname.errors %}
+    <div class="alert alert-danger" role="alert">
+        {{ error }}
+    </div>
+    {% endfor %}
+    </p>
+    <p>
+        {{ form.captainpassword.label }}<br>
+        {{ form.captainpassword(class="form-control", type="password") }}<br>
+        {% for error in form.captainpassword.errors %}
+    <div class="alert alert-danger" role="alert">
+        {{ error }}
+    </div>
+    {% endfor %}
+    </p>
+    <p>{{ form.remember_me() }} {{ form.remember_me.label }}</p>
+    <p>{{ form.submit(type="submit", class="btn btn-primary") }}</p>
+</form>
+
+
+{% endblock %}
