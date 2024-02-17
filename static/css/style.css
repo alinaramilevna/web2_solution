@@ -17,7 +17,16 @@ form.login_form {
     padding: 10px;
 }
 
-h1 {
+#firstTitle {
+@include font-size(4rem);
+text-align: center;
+}
+
+#titleWithPicture {
 background: url("mars_logo.png") left no-repeat transparent;
 padding-left: 150px;
+}
+
+#mainLoop {
+text-align: center;
 }
