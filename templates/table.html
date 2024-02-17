@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Оформление</h2>
+<table width="200px">
+    <thead>
+    <th>Цвет стен</th>
+    <th>Эмблема</th>
+    </thead>
+    <tr>
+        <div class="col-md-12 row">
+        {% if sex == 'male' and age < 21 %}
+        <td bgcolor="gray"></td>
+        <td><img src="../../static/img/child.jpg"></td>
+        {% elif age >= 21 and sex == 'male' %}
+        <td bgcolor="blue"></td>
+        <td><img src="../../static/img/adult.jpg"></td>
+        {% elif age >= 21 and sex == 'female' %}
+        <td bgcolor="red"></td>
+        <td><img src="../../static/img/adult.jpg"></td>
+        {% elif age < 21 and sex == 'female' %}
+        <td bgcolor="pink"></td>
+        <td><img src="../../static/img/child.jpg"></td>
+        {% endif %}
+        </div>
+    </tr>
+
+</table>
+{% endblock %}
